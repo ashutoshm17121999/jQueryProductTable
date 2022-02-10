@@ -3,10 +3,10 @@ $('.success').hide();
 $('.error').hide();
 $('#update_product').hide();
 })
-$(".close2").click(function(){
+$(".close-2").click(function(){
     $(".error").hide();
 });
-$(".close1").click(function(){
+$(".close-1").click(function(){
     $(".success").hide();
 });
 var array = [];
