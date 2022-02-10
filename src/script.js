@@ -12,10 +12,10 @@ $(".close-1").click(function(){
 var array = [];
 var temp = 0;
 function myFunction(){
-    var sku = document.getElementById('product_sku').value;
-    var pName = document.getElementById('product_name').value;
-    var pPrice = document.getElementById('product_price').value;
-    var pQuantity = document.getElementById('product_quantity').value;
+    var sku = $('#product_sku').val();
+    var pName = $('#product_name').val();
+    var pPrice = $('#product_price').val();
+    var pQuantity = $('#product_quantity').val();
     myLogic(sku , pName , pPrice , pQuantity);
     myDisplay(array);
     
@@ -27,7 +27,31 @@ function myLogic(id , pName , pPrice , pQuantity){
             $(".error").show();
             return;
         }
+    }  
+    $("#product_sku").css("border","1px solid black");
+    $("#product_name").css("border","1px solid black");
+    $("#product_price").css("border","1px solid black");
+
+    if (id == "" || isNaN(id) || pName == "" || pPrice == "" || isNaN(pPrice)){
+        if(id == "" || isNaN(id)){
+            $("#product_sku").css("border","1px solid red");  
+        }else{
+            $("#product_sku").css("border","1px solid black");
+        }
+        if(pName == ""){
+            $("#product_name").css("border","1px solid red");   
+        }else{
+            $("#product_name").css("border","1px solid black");
+        }
+        if(pPrice == "" || isNaN(pPrice)){
+            $("#product_price").css("border","1px solid red");
+        }else{
+            $("#product_price").css("border","1px solid black");
+        }
+        return;
     }
+    
+    
     obj = {};
     obj["sku"] = id;
     obj["pName"] = pName;
@@ -49,7 +73,7 @@ function myDisplay(result){
       txt.innerHTML +='<tr>\
       <th>' + result[i].sku+ '</th>\
       <th>'+ result[i].pName+'</th>\
-      <th>'+result[i].Price+'</th>\
+      <th>'+result[i].pPrice+'</th>\
       <th>'+result[i].pQuantity+'</th>\
       <td><a href="#" class="edit" onclick = formEdit("'+result[i].sku+'")>Edit</a><a href="#" class="delete" onclick = formDelete(\"'+result[i].sku+'\")>Delete</a></td>\
   </tr>';
@@ -75,7 +99,7 @@ function formEdit(id){
 function myUpdates(){
     $('#add_product').show();
     $('#update_product').hide();
-    array[temp].sku = $('#product_sku').val();
+    // array[temp].sku = $('#product_sku').val();
     array[temp].pName = $('#product_name').val();
     array[temp].pPrice = $('#product_price').val();
     array[temp].pQuantity = $('#product_quantity').val();
